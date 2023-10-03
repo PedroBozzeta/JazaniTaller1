@@ -1,5 +1,4 @@
 ﻿using JazaniT1.Domain.Admins.Models;
-using System;
 
 namespace JazaniT1.Domain.Admins.Repositories
 {

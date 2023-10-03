@@ -1,7 +1,6 @@
 ﻿using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Infrastructure.Admins.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace JazaniT1.Infrastructure.Cores.Contexts
 {
@@ -11,6 +10,7 @@ namespace JazaniT1.Infrastructure.Cores.Contexts
         { }
         #region "DbSet"
         public DbSet<LevelEducation> LevelEducations { get; set; }
+        public DbSet<MeasureUnit> MeasureUnits { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,6 +18,7 @@ namespace JazaniT1.Infrastructure.Cores.Contexts
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new LevelEducationConfiguration());
+            modelBuilder.ApplyConfiguration(new MeasureUnitConfiguration());
         }
     }
 }

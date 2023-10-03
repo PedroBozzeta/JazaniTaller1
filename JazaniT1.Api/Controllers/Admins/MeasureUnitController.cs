@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using JazaniT1.Application.Admins.Dtos.MeasureUnits;
+using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JazaniT1.Api.Controllers.Admins
 {
@@ -8,36 +8,45 @@ namespace JazaniT1.Api.Controllers.Admins
     [ApiController]
     public class MeasureUnitController : ControllerBase
     {
-        // GET: api/<MeasureUnitController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IMeasureUnitService _measureUnitService;
+        public MeasureUnitController(IMeasureUnitService measureUnitService)
         {
-            return new string[] { "value1", "value2" };
+            _measureUnitService = measureUnitService;
         }
 
+
+        // GET: api/<MeasureUnitController>
+        [HttpGet]
+        public async Task<IEnumerable<MeasureUnitDto>> Get()
+        {
+            return await _measureUnitService.FindAllAsync();
+        }
         // GET api/<MeasureUnitController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<MeasureUnitDto> Get(int id)
         {
-            return "value";
+            return await _measureUnitService.FindByIdAsync(id);
         }
 
         // POST api/<MeasureUnitController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<MeasureUnitDto> Post([FromBody] MeasureUnitSaveDto measureUnitSaveDto)
         {
+            return await _measureUnitService.CreateAsync(measureUnitSaveDto);
         }
 
         // PUT api/<MeasureUnitController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<MeasureUnitDto> Put(int id, [FromBody] MeasureUnitSaveDto measureUnitSaveDto)
         {
+            return await _measureUnitService.EditAsync(id, measureUnitSaveDto);
         }
 
         // DELETE api/<MeasureUnitController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<MeasureUnitDto> Delete(int id)
         {
+            return await _measureUnitService.DisabledAsync(id);
         }
     }
 }

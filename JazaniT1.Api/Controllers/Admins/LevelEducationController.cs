@@ -1,9 +1,8 @@
 ﻿using JazaniT1.Application.Admins.Dtos.LevelEducations;
 using JazaniT1.Application.Admins.Services;
 using Microsoft.AspNetCore.Mvc;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Jazani.Api.Controllers.Admins
+namespace JazaniT1.Api.Controllers.Admins
 {
     [Route("api/[controller]")]
     [ApiController]

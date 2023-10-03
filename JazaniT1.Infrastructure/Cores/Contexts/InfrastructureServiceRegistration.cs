@@ -16,6 +16,7 @@ namespace JazaniT1.Infrastructure.Cores.Contexts
             });
 
             services.AddTransient<ILevelEducationRepository, LevelEducationRepository>();
+            services.AddTransient<IMeasureUnitRepository, MeasureUnitRepository>();
 
             return services;
         }
