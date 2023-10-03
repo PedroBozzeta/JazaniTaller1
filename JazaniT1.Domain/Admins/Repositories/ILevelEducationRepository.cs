@@ -1,10 +1,10 @@
-﻿using Jazani.Domain.Admins.Models;
+﻿using JazaniT1.Domain.Admins.Models;
 using System;
 
-namespace Jazani.Domain.Admins.Repositories
+namespace JazaniT1.Domain.Admins.Repositories
 {
     //Definiendo el contrato de la Interfaz
-    public interface IOfficeRepository
+    public interface ILevelEducationRepository
     {
         Task<IReadOnlyList<LevelEducation>> FindAllAsync();
         Task<LevelEducation?> FindByIdAsync(int id);

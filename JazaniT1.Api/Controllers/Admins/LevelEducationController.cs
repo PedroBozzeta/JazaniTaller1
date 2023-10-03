@@ -1,43 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿using JazaniT1.Application.Admins.Dtos.LevelEducations;
+using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace JazaniT1.Api.Controllers.Admins
+namespace Jazani.Api.Controllers.Admins
 {
     [Route("api/[controller]")]
     [ApiController]
     public class LevelEducationController : ControllerBase
     {
-        // GET: api/<LevelEducationController>
+        private readonly ILevelEducationService _levelEducationService;
+        public LevelEducationController(ILevelEducationService levelEducationService)
+        {
+            _levelEducationService = levelEducationService;
+        }
+
+
+        // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<LevelEducationDto>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _levelEducationService.FindAllAsync();
         }
-
-        // GET api/<LevelEducationController>/5
+        // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<LevelEducationDto> Get(int id)
         {
-            return "value";
+            return await _levelEducationService.FindByIdAsync(id);
         }
 
-        // POST api/<LevelEducationController>
+        // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<LevelEducationDto> Post([FromBody] LevelEducationSaveDto levelEducationSaveDto)
         {
+            return await _levelEducationService.CreateAsync(levelEducationSaveDto);
         }
 
-        // PUT api/<LevelEducationController>/5
+        // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<LevelEducationDto> Put(int id, [FromBody] LevelEducationSaveDto levelEducationSaveDto)
         {
+            return await _levelEducationService.EditAsync(id, levelEducationSaveDto);
         }
 
-        // DELETE api/<LevelEducationController>/5
+        // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<LevelEducationDto> Delete(int id)
         {
+            return await _levelEducationService.DisabledAsync(id);
         }
     }
 }

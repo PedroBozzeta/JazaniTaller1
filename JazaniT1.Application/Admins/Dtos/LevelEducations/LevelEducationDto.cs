@@ -1,7 +1,7 @@
 ﻿
-namespace JazaniT1.Domain.Admins.Models
+namespace JazaniT1.Application.Admins.Dtos.LevelEducations
 {
-    public class LevelEducation
+    public class LevelEducationDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = default;
