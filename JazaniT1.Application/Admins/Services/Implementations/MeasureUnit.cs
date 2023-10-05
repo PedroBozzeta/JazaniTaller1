@@ -25,7 +25,7 @@ namespace JazaniT1.Application.Admins.Services.Implementations
 
             MeasureUnit measureUnitSaved = await _measureUnitRepository.SaveAsync(measureUnit);
 
-            return _mapper.Map<MeasureUnitDto>(measureUnit);
+            return _mapper.Map<MeasureUnitDto>(measureUnitSaved);
         }
 
         public async Task<MeasureUnitDto> DisabledAsync(int id)
