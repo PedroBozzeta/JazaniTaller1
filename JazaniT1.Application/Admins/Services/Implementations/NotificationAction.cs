@@ -62,3 +62,4 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             return _mapper.Map<NotificationActionDto>(notificationAction);
         }
     }
+}

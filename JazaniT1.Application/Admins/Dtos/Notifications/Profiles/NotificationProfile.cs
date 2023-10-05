@@ -9,6 +9,7 @@ namespace JazaniT1.Application.Admins.Dtos.Notifications.Profiles
         {
             CreateMap<Notification, NotificationDto>();
             CreateMap<NotificationDto, NotificationSaveDto>().ReverseMap();
+            CreateMap<NotificationSaveDto, Notification>();
         }
     }
 }

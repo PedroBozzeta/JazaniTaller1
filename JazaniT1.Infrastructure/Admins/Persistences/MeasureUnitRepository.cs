@@ -2,6 +2,7 @@
 using JazaniT1.Domain.Admins.Repositories;
 using JazaniT1.Infrastructure.Cores.Contexts;
 using JazaniT1.Infrastructure.Cores.Persistences;
+using Microsoft.EntityFrameworkCore;
 
 namespace JazaniT1.Infrastructure.Admins.Persistences
 {

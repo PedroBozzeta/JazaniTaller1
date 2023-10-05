@@ -23,9 +23,9 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             notification.RegistrationDate = DateTime.Now;
             notification.State = true;
 
-            Notification notificationSaved = await _notificationRepository.SaveAsync(notification);
+             await _notificationRepository.SaveAsync(notification);
 
-            return _mapper.Map<NotificationDto>(notificationSaved);
+            return _mapper.Map<NotificationDto>(notification);
         }
 
         public async Task<NotificationDto> DisabledAsync(int id)
@@ -33,9 +33,9 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             Notification notification = await _notificationRepository.FindByIdAsync(id);
             notification.State = false;
 
-            Notification notificationSaved = await _notificationRepository.SaveAsync(notification);
+            await _notificationRepository.SaveAsync(notification);
 
-            return _mapper.Map<NotificationDto>(notificationSaved);
+            return _mapper.Map<NotificationDto>(notification);
         }
 
         public async Task<NotificationDto?> EditAsync(int id, NotificationSaveDto notificationSaveDto)
@@ -43,9 +43,8 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             Notification notification = await _notificationRepository.FindByIdAsync(id);
 
             _mapper.Map<NotificationSaveDto, Notification>(notificationSaveDto, notification);
-            Notification notificationSaved = await _notificationRepository.SaveAsync(notification);
-
-            return _mapper.Map<NotificationDto>(notificationSaved);
+            
+            return _mapper.Map<NotificationDto>(notification);
         }
 
         public async Task<IReadOnlyList<NotificationDto>> FindAllAsync()
