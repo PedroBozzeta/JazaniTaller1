@@ -22,7 +22,6 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             Notification notification = _mapper.Map<Notification>(notificationSaveDto);
             notification.RegistrationDate = DateTime.Now;
             notification.State = true;
-
              await _notificationRepository.SaveAsync(notification);
 
             return _mapper.Map<NotificationDto>(notification);
