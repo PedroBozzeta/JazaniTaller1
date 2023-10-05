@@ -10,7 +10,7 @@ namespace JazaniT1.Domain.Admins.Models
 
         [MaxLength(5)]
         public string Symbol { get; set; } = default;
-        public DateTimeOffset RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
         public bool State { get; set; }
     }
 }

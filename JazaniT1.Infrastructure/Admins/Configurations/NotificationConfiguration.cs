@@ -5,19 +5,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JazaniT1.Infrastructure.Admins.Configurations
 {
-    public class MeasureUnitConfiguration : IEntityTypeConfiguration<MeasureUnit>
+    public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
     {
-        public void Configure(EntityTypeBuilder<MeasureUnit> builder)
+        //Configuración de la entidad Notification
+        public void Configure(EntityTypeBuilder<Notification> builder)
         {
-            builder.ToTable("measureunit", "ge");
+            builder.ToTable("notification", "ge");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnName("name");
             builder.Property(x => x.Description).HasColumnName("description");
-            builder.Property(x => x.Symbol).HasColumnName("symbol");
+            builder.Property(x => x.NotificationActionId).HasColumnName("notificationactionid");
             builder.Property(x => x.RegistrationDate)
                 .HasColumnName("registrationdate")
                 .HasConversion(new DateTimeToDateTimeOffset());
             builder.Property(x => x.State).HasColumnName("state");
+            builder.HasOne(one => one.NotificationAction).WithMany(many => many.Notifications)
+                .HasForeignKey(fk => fk.NotificationActionId);
         }
     }
 }
