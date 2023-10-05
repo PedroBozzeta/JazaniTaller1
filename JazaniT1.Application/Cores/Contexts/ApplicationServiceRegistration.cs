@@ -11,9 +11,6 @@ namespace JazaniT1.Application.Cores.Contexts
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddTransient<ILevelEducationService, LevelEducationService>();
-            services.AddTransient<IMeasureUnitService, MeasureUnitService>();
-
             return services;
         }
     }
