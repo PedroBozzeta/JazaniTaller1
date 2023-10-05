@@ -1,5 +1,8 @@
 using JazaniT1.Infrastructure.Cores.Contexts;
 using JazaniT1.Application.Cores.Contexts;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +17,13 @@ builder.Services.addInfrastructureServices(builder.Configuration);
 
 //Applications
 builder.Services.AddApplicationServices();
+
+//Autofac
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(options =>
+    {
+        options.RegisterModule(new InfrastructureAutofacModule());
+    });
 
 var app = builder.Build();
 

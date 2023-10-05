@@ -14,10 +14,6 @@ namespace JazaniT1.Infrastructure.Cores.Contexts
             {
                 options.UseSqlServer(configuration.GetConnectionString("DbConnection"));
             });
-
-            services.AddTransient<ILevelEducationRepository, LevelEducationRepository>();
-            services.AddTransient<IMeasureUnitRepository, MeasureUnitRepository>();
-
             return services;
         }
     }
