@@ -7,7 +7,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
 {
     public class InvestmentRepository : CrudRepository<Investment, int>, IInvestmentRepository
     {
-        protected InvestmentRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public InvestmentRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }

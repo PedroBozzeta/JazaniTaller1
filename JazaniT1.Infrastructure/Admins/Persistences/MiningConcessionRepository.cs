@@ -7,7 +7,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
 {
     public class MiningConcessionRepository : CrudRepository<MiningConcession, int>, IMiningConcessionRepository
     {
-        protected MiningConcessionRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public MiningConcessionRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }

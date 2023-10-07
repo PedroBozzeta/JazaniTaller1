@@ -7,7 +7,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
 {
     public class PeriodTypeRepository : CrudRepository<PeriodType, int>, IPeriodTypeRepository
     {
-        protected PeriodTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public PeriodTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }

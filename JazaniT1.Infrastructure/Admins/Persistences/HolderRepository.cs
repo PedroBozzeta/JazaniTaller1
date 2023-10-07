@@ -7,7 +7,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
 {
     public class HolderRepository : CrudRepository<Holder, int>, IHolderRepository
     {
-        protected HolderRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public HolderRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }

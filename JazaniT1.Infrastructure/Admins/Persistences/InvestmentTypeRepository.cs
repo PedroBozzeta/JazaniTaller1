@@ -8,10 +8,8 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
     public class InvestmentTypeRepository : CrudRepository<InvestmentType,int>,IInvestmentTypeRepository
     {
 
-        protected InvestmentTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public InvestmentTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
-    }
-}
     }
 }

@@ -26,5 +26,23 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
                 .Include(x => x.NotificationAction)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
+        public async override Task<Notification> SaveAsync(Notification entity)
+        {
+            EntityState state = _dbContext.Entry(entity).State;
+
+            // entity.NotificationAction = await _dbContext.Set<NotificationAction>().FindAsync(entity.NotificationActionId);
+            _ = state switch
+            {
+                EntityState.Detached => _dbContext.Set<Notification>().Add(entity),
+                EntityState.Modified => _dbContext.Set<Notification>().Update(entity)
+
+            };
+
+            await _dbContext.SaveChangesAsync();
+
+            //return entity;
+
+            return await FindByIdAsync(entity.Id);
+        }
     }
 }
