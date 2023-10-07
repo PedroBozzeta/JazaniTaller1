@@ -1,6 +1,4 @@
-﻿using JazaniT1.Domain.Admins.Models;
-using JazaniT1.Infrastructure.Admins.Configurations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace JazaniT1.Infrastructure.Cores.Contexts
