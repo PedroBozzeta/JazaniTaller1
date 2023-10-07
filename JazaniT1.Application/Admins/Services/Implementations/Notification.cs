@@ -7,10 +7,10 @@ namespace JazaniT1.Application.Admins.Services.Implementations
 {
     public class NotificationService : INotificationService
     {
-        private readonly INotification _notificationRepository;
+        private readonly INotificationRepository _notificationRepository;
 
         private readonly IMapper _mapper;
-        public NotificationService(INotification notificationRepository, IMapper mapper)
+        public NotificationService(INotificationRepository notificationRepository, IMapper mapper)
         {
             _notificationRepository = notificationRepository;
 

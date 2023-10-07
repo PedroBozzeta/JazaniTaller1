@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JazaniT1.Infrastructure.Admins.Persistences
 {
-    public class NotificationRepository : CrudRepository<Notification, int>, INotification
+    public class NotificationRepository : CrudRepository<Notification, int>, INotificationRepository
     {
         private readonly ApplicationDbContext _dbContext;
         public NotificationRepository(ApplicationDbContext dbContext) : base(dbContext)
