@@ -3,7 +3,7 @@ using JazaniT1.Domain.Cores.JazaniT1.Domain.Cores.Repositories;
 
 namespace JazaniT1.Domain.Admins.Repositories
 {
-    public interface IInvestmentType:ICrudRepository<InvestmentType,int>
+    public interface IInvestmentTypeRepository: ICrudRepository<InvestmentType,int>
     {
     }
 }

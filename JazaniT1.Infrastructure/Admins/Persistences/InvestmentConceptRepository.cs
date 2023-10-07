@@ -5,9 +5,9 @@ using JazaniT1.Infrastructure.Cores.Persistences;
 
 namespace JazaniT1.Infrastructure.Admins.Persistences
 {
-    public class MeasureUnitRepository : CrudRepository<MeasureUnit, int>, IMeasureUnitRepository
+    public class InvestmentConceptRepository : CrudRepository<InvestmentConcept, int>, IInvestmentConceptRepository
     {
-        public MeasureUnitRepository(ApplicationDbContext dbContext) : base(dbContext)
+        protected InvestmentConceptRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }
