@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JazaniT1.Application.Admins.Dtos.MiningConcessions;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    internal class IMiningConcessionService
+    public interface IMiningConcessionService
     {
+        Task<IReadOnlyList<MiningConcessionDto>> FindAllAsync();
+        Task<MiningConcessionDto?> FindByIdAsync(int id);
+        Task<MiningConcessionDto?> CreateAsync(MiningConcessionSaveDto miningConcessionSaveDto);
+        Task<MiningConcessionDto?> EditAsync(int id, MiningConcessionSaveDto miningConcessiontSaveDto);
+        Task<MiningConcessionDto?> DisabledAsync(int id);
     }
 }

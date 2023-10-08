@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JazaniT1.Application.Admins.Dtos.PeriodTypes
+﻿namespace JazaniT1.Application.Admins.Dtos.PeriodTypes
 {
-    internal class PeriodTypeSaveDto
+    public class PeriodTypeSaveDto
     {
+        public string? Name { get; set; } = default;
+        public string? Description { get; set; }
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JazaniT1.Application.Admins.Dtos.InvestmentTypes
+﻿namespace JazaniT1.Application.Admins.Dtos.InvestmentTypes
 {
-    internal class InvestmentTypeSaveDto
+    public class InvestmentTypeSaveDto
     {
+        public string Name { get; set; } = default;
+        public string? Description { get; set; }
     }
 }

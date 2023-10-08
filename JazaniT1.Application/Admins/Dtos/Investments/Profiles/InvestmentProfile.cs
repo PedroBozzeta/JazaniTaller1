@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using JazaniT1.Domain.Admins.Models;
 
 namespace JazaniT1.Application.Admins.Dtos.Investments.Profiles
 {
-    internal class InvestmentProfile
+    public class InvestmentProfile : Profile
     {
+        public InvestmentProfile()
+        {
+            CreateMap<Investment, InvestmentDto>();
+            CreateMap<InvestmentDto, InvestmentSaveDto>().ReverseMap();
+            CreateMap<InvestmentSaveDto, Investment>();
+        }
     }
 }

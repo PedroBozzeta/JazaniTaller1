@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    internal class IInvestmentConceptService
+    public interface IInvestmentConceptService
     {
+        Task<IReadOnlyList<InvestmentConceptDto>> FindAllAsync();
+        Task<InvestmentConceptDto?> FindByIdAsync(int id);
+        Task<InvestmentConceptDto?> CreateAsync(InvestmentConceptSaveDto investmentConceptSaveDto);
+        Task<InvestmentConceptDto?> EditAsync(int id, InvestmentConceptSaveDto investmentConceptSaveDto);
+        Task<InvestmentConceptDto?> DisabledAsync(int id);
     }
 }

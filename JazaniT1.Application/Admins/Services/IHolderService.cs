@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JazaniT1.Application.Admins.Dtos.Holders;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    internal class IHolderService
+    public interface IHolderService
     {
+        Task<IReadOnlyList<HolderDto>> FindAllAsync();
+        Task<HolderDto?> FindByIdAsync(int id);
     }
 }

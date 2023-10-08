@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using JazaniT1.Domain.Admins.Models;
 
 namespace JazaniT1.Application.Admins.Dtos.MiningConcessions.Profiles
 {
-    internal class MiningConcessionProfile
+    public class MiningConcessionProfile:Profile
     {
+        public MiningConcessionProfile()
+        {
+            CreateMap<MiningConcession, MiningConcessionDto>();
+            CreateMap<MiningConcessionDto, MiningConcessionSaveDto>().ReverseMap();
+            CreateMap<MiningConcessionSaveDto, MiningConcession>();
+        }
+
     }
 }
