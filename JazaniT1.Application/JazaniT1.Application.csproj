@@ -17,15 +17,4 @@
     <ProjectReference Include="..\JazaniT1.Domain\JazaniT1.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Admins\Dtos\Investments\Validators\" />
-    <Folder Include="Admins\Dtos\InvestmentTypes\Validators\" />
-    <Folder Include="Admins\Dtos\LevelEducations\Validators\" />
-    <Folder Include="Admins\Dtos\MeasureUnits\Validators\" />
-    <Folder Include="Admins\Dtos\MiningConcessions\Validators\" />
-    <Folder Include="Admins\Dtos\NotificationActions\Validators\" />
-    <Folder Include="Admins\Dtos\Notifications\Validators\" />
-    <Folder Include="Admins\Dtos\PeriodTypes\Validators\" />
-  </ItemGroup>
-
 </Project>
