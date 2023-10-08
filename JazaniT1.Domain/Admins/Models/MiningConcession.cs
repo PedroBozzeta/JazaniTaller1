@@ -8,7 +8,7 @@ namespace JazaniT1.Domain.Admins.Models
 
         [MaxLength(11)]
         public string Code { get; set; } = default;
-        public string? Name { get; set; } = default;
+        public string Name { get; set; } = default;
         public string? Description { get; set; }
         public DateTime RegistrationDate { get; set; }
         public int MineralTypeId { get; set; } = 1;

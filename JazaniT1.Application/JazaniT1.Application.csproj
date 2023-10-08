@@ -10,10 +10,22 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JazaniT1.Domain\JazaniT1.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Admins\Dtos\Investments\Validators\" />
+    <Folder Include="Admins\Dtos\InvestmentTypes\Validators\" />
+    <Folder Include="Admins\Dtos\LevelEducations\Validators\" />
+    <Folder Include="Admins\Dtos\MeasureUnits\Validators\" />
+    <Folder Include="Admins\Dtos\MiningConcessions\Validators\" />
+    <Folder Include="Admins\Dtos\NotificationActions\Validators\" />
+    <Folder Include="Admins\Dtos\Notifications\Validators\" />
+    <Folder Include="Admins\Dtos\PeriodTypes\Validators\" />
   </ItemGroup>
 
 </Project>
