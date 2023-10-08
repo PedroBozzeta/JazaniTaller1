@@ -7,6 +7,7 @@ namespace JazaniT1.Application.Admins.Dtos.MeasureUnits.Mappers
         public MeasureUnitMapper()
         {
             CreateMap<MeasureUnit, MeasureUnitDto>();
+            CreateMap<MeasureUnit, MeasureUnitSimpleDto>();
         }
     }
 }

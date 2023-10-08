@@ -10,6 +10,7 @@ namespace JazaniT1.Application.Admins.Dtos.PeriodTypes.Profiles
             CreateMap<PeriodType, PeriodTypeDto>();
             CreateMap<PeriodTypeDto, PeriodTypeSaveDto>().ReverseMap();
             CreateMap<PeriodTypeSaveDto, PeriodType>();
+            CreateMap<PeriodType, PeriodTypeSimpleDto>();
         }
 
     }

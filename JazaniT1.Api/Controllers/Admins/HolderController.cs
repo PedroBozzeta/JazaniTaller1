@@ -1,6 +1,5 @@
 ﻿using JazaniT1.Application.Admins.Dtos.Holders;
 using JazaniT1.Application.Admins.Services;
-using JazaniT1.Application.Admins.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

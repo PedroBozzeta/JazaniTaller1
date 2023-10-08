@@ -2,11 +2,6 @@
 using JazaniT1.Application.Admins.Dtos.PeriodTypes;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JazaniT1.Application.Admins.Services.Implementations
 {

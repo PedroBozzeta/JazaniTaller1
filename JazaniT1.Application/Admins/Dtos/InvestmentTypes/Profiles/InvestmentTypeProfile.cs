@@ -10,6 +10,7 @@ namespace JazaniT1.Application.Admins.Dtos.InvestmentTypes.Profiles
             CreateMap<InvestmentType, InvestmentTypeDto>();
             CreateMap<InvestmentTypeDto, InvestmentTypeSaveDto>().ReverseMap();
             CreateMap<InvestmentTypeSaveDto, InvestmentType>();
+            CreateMap<InvestmentType, InvestmentTypeSimpleDto>();
         }
     }
 }
