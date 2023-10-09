@@ -1,14 +1,37 @@
-using JazaniT1.Infrastructure.Cores.Contexts;
-using JazaniT1.Application.Cores.Contexts;
-using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using JazaniT1.Api.Filters;
+using JazaniT1.Api.Middlewares;
+using JazaniT1.Application.Cores.Contexts;
+using JazaniT1.Infrastructure.Cores.Contexts;
+using Serilog;
+using Serilog.Events;
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 var builder = WebApplication.CreateBuilder(args);
+
+var logger = new LoggerConfiguration()
+    .WriteTo.Console(LogEventLevel.Information)
+    .WriteTo.File(".." + Path.DirectorySeparatorChar + "logapi.log",
+    LogEventLevel.Warning,
+    rollingInterval: RollingInterval.Day
+    )
+    .CreateLogger();
+
+builder.Logging.AddSerilog(logger);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new ValidationFilter());
+});
+//Route options
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -26,6 +49,10 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         options.RegisterModule(new ApplicationAutofacModule());
     });
 
+//API
+
+builder.Services.AddTransient<ExceptionMiddleware>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +61,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

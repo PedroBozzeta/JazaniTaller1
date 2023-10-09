@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using JazaniT1.Application.Admins.Dtos.LevelEducations;
+using JazaniT1.Application.Cores.Exceptions;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace JazaniT1.Application.Admins.Services.Implementations
 {
@@ -10,11 +12,14 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         private readonly ILevelEducationRepository _levelEducationRepository;
 
         private readonly IMapper _mapper;
-        public LevelEducationService(ILevelEducationRepository levelEducationRepository, IMapper mapper)
+        private readonly ILogger _logger;
+        public LevelEducationService(ILevelEducationRepository levelEducationRepository, IMapper mapper,ILogger<LevelEducationService> logger)
         {
             _levelEducationRepository = levelEducationRepository;
 
             _mapper = mapper;
+
+            _logger = logger;
         }
 
         public async Task<LevelEducationDto> CreateAsync(LevelEducationSaveDto levelEducationSaveDto)
@@ -31,6 +36,12 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<LevelEducationDto> DisabledAsync(int id)
         {
             LevelEducation levelEducation = await _levelEducationRepository.FindByIdAsync(id);
+            if (levelEducation == null)
+            {
+                _logger.LogWarning("Nivel de educación no encontrado para el id " + id);
+                throw LevelEducationNotFound(id);
+            }
+
             levelEducation.State = false;
 
             LevelEducation levelEducationSaved = await _levelEducationRepository.SaveAsync(levelEducation);
@@ -41,6 +52,11 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<LevelEducationDto?> EditAsync(int id, LevelEducationSaveDto levelEducationSaveDto)
         {
             LevelEducation levelEducation = await _levelEducationRepository.FindByIdAsync(id);
+            if (levelEducation == null)
+            {
+                _logger.LogWarning("Nivel de educación no encontrado para el id " + id);
+                throw LevelEducationNotFound(id);
+            }
 
             _mapper.Map<LevelEducationSaveDto, LevelEducation>(levelEducationSaveDto, levelEducation);
             LevelEducation levelEducationSaved = await _levelEducationRepository.SaveAsync(levelEducation);
@@ -58,8 +74,17 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<LevelEducationDto?> FindByIdAsync(int id)
         {
             LevelEducation? levelEducation = await _levelEducationRepository.FindByIdAsync(id);
+            if (levelEducation == null)
+            {
+                _logger.LogWarning("Nivel de educación no encontrado para el id " + id);
+                throw LevelEducationNotFound(id);
+            }
 
             return _mapper.Map<LevelEducationDto>(levelEducation);
+        }
+        private NotFoundCoreException LevelEducationNotFound(int id)
+        {
+            return new NotFoundCoreException("Nivel de educación no encontrado para el id " + id);
         }
     }
 }

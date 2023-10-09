@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using JazaniT1.Application.Admins.Dtos.MeasureUnits;
+using JazaniT1.Application.Cores.Exceptions;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace JazaniT1.Application.Admins.Services.Implementations
 {
@@ -10,11 +12,15 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         private readonly IMeasureUnitRepository _measureUnitRepository;
 
         private readonly IMapper _mapper;
-        public MeasureUnitService(IMeasureUnitRepository measureUnitRepository, IMapper mapper)
+
+        private readonly ILogger _logger;
+        public MeasureUnitService(IMeasureUnitRepository measureUnitRepository, IMapper mapper, ILogger<MeasureUnitService> logger)
         {
             _measureUnitRepository = measureUnitRepository;
 
             _mapper = mapper;
+
+            _logger = logger;
         }
 
         public async Task<MeasureUnitDto> CreateAsync(MeasureUnitSaveDto measureUnitSaveDto)
@@ -31,6 +37,12 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<MeasureUnitDto> DisabledAsync(int id)
         {
             MeasureUnit measureUnit = await _measureUnitRepository.FindByIdAsync(id);
+            if (measureUnit == null)
+            {
+                _logger.LogWarning("Unidad de medida no encontrado para el id " + id);
+                throw MeasureUnitNotFound(id);
+            }
+
             measureUnit.State = false;
 
             MeasureUnit measureUnitSaved = await _measureUnitRepository.SaveAsync(measureUnit);
@@ -41,6 +53,11 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<MeasureUnitDto?> EditAsync(int id, MeasureUnitSaveDto measureUnitSaveDto)
         {
             MeasureUnit measureUnit = await _measureUnitRepository.FindByIdAsync(id);
+            if (measureUnit == null)
+            {
+                _logger.LogWarning("Unidad de medida no encontrado para el id " + id);
+                throw MeasureUnitNotFound(id);
+            }
 
             _mapper.Map<MeasureUnitSaveDto, MeasureUnit>(measureUnitSaveDto, measureUnit);
             MeasureUnit measureUnitSaved = await _measureUnitRepository.SaveAsync(measureUnit);
@@ -58,8 +75,17 @@ namespace JazaniT1.Application.Admins.Services.Implementations
         public async Task<MeasureUnitDto?> FindByIdAsync(int id)
         {
             MeasureUnit? measureUnit = await _measureUnitRepository.FindByIdAsync(id);
+            if (measureUnit == null)
+            {
+                _logger.LogWarning("Unidad de medida no encontrado para el id " + id);
+                throw MeasureUnitNotFound(id);
+            }
 
             return _mapper.Map<MeasureUnitDto>(measureUnit);
+        }
+        private NotFoundCoreException MeasureUnitNotFound(int id)
+        {
+            return new NotFoundCoreException("Unidad de medida no encontrado para el id " + id);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
 using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using JazaniT1.Api.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,6 +26,8 @@ namespace JazaniT1.Api.Controllers.Admins
 
         // GET api/<InvestmentConcept>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentConceptDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
         public async Task<InvestmentConceptDto> Get(int id)
         {
             return await _investmentConceptService.FindByIdAsync(id);
@@ -31,6 +35,8 @@ namespace JazaniT1.Api.Controllers.Admins
 
         // POST api/<InvestmentConcept>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InvestmentConceptDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
         public async Task<InvestmentConceptDto> Post([FromBody] InvestmentConceptSaveDto investmentConceptSaveDto)
         {
             return await _investmentConceptService.CreateAsync(investmentConceptSaveDto);
