@@ -1,5 +1,7 @@
-﻿using JazaniT1.Application.Admins.Dtos.LevelEducations;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Admins.Dtos.LevelEducations;
 using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JazaniT1.Api.Controllers.Admins
@@ -23,16 +25,22 @@ namespace JazaniT1.Api.Controllers.Admins
         }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public async Task<LevelEducationDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LevelEducationDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
+        public async Task<Results<NotFound, Ok<LevelEducationDto>>> Get(int id)
         {
-            return await _levelEducationService.FindByIdAsync(id);
+            var response = await _levelEducationService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public async Task<LevelEducationDto> Post([FromBody] LevelEducationSaveDto levelEducationSaveDto)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(LevelEducationDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+        public async Task<Results<BadRequest,CreatedAtRoute<LevelEducationDto>>> Post([FromBody] LevelEducationSaveDto levelEducationSaveDto)
         {
-            return await _levelEducationService.CreateAsync(levelEducationSaveDto);
+            var response = await _levelEducationService.CreateAsync(levelEducationSaveDto);
+            return TypedResults.CreatedAtRoute(response);
         }
 
         // PUT api/<ValuesController>/5

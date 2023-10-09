@@ -1,5 +1,7 @@
-﻿using JazaniT1.Application.Admins.Dtos.Notifications;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Admins.Dtos.Notifications;
 using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,16 +27,22 @@ namespace JazaniT1.Api.Controllers.Admins
         }
         // GET api/<NotificationController>/5
         [HttpGet("{id}")]
-        public async Task<NotificationDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NotificationDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
+        public async Task<Results<NotFound,Ok<NotificationDto>>> Get(int id)
         {
-            return await _notificationService.FindByIdAsync(id);
+            var response = await _notificationService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         // POST api/<NotificationController>
         [HttpPost]
-        public async Task<NotificationDto> Post([FromBody] NotificationSaveDto notificationSaveDto)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NotificationDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+        public async Task<Results<BadRequest,CreatedAtRoute<NotificationDto>>> Post([FromBody] NotificationSaveDto notificationSaveDto)
         {
-            return await _notificationService.CreateAsync(notificationSaveDto);
+            var response = await _notificationService.CreateAsync(notificationSaveDto);
+            return TypedResults.CreatedAtRoute(response);
         }
 
         // PUT api/<NotificationController>/5

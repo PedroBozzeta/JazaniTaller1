@@ -1,5 +1,8 @@
-﻿using JazaniT1.Application.Admins.Dtos.NotificationActions;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Admins.Dtos.MiningConcessions;
+using JazaniT1.Application.Admins.Dtos.NotificationActions;
 using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,16 +28,22 @@ namespace JazaniT1.Api.Controllers.Admins
         }
         // GET api/<NotificationActionController>/5
         [HttpGet("{id}")]
-        public async Task<NotificationActionDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NotificationActionDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
+        public async Task<Results<NotFound,Ok<NotificationActionDto>>> Get(int id)
         {
-            return await _notificationActionService.FindByIdAsync(id);
+            var response = await _notificationActionService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         // POST api/<NotificationActionController>
         [HttpPost]
-        public async Task<NotificationActionDto> Post([FromBody] NotificationActionSaveDto notificationActionSaveDto)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NotificationActionDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+        public async Task<Results<BadRequest,CreatedAtRoute<NotificationActionDto>>> Post([FromBody] NotificationActionSaveDto notificationActionSaveDto)
         {
-            return await _notificationActionService.CreateAsync(notificationActionSaveDto);
+            var response = await _notificationActionService.CreateAsync(notificationActionSaveDto);
+            return TypedResults.CreatedAtRoute(response);
         }
 
         // PUT api/<NotificationActionController>/5

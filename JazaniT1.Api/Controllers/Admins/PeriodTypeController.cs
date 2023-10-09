@@ -1,6 +1,7 @@
-﻿using JazaniT1.Application.Admins.Dtos.PeriodTypes;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Admins.Dtos.PeriodTypes;
 using JazaniT1.Application.Admins.Services;
-using JazaniT1.Domain.Admins.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -27,16 +28,22 @@ namespace JazaniT1.Api.Controllers.Admins
 
         // GET api/<PeriodTypeController>/5
         [HttpGet("{id}")]
-        public async Task<PeriodTypeDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PeriodTypeDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
+        public async Task<Results<NotFound,Ok<PeriodTypeDto>>> Get(int id)
         {
-            return await _periodTypeService.FindByIdAsync(id);
+            var response = await _periodTypeService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         // POST api/<PeriodTypeController>
         [HttpPost]
-        public async Task<PeriodTypeDto> Post([FromBody] PeriodTypeSaveDto periodTypeSaveDto)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(PeriodTypeDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+        public async Task<Results<BadRequest,CreatedAtRoute<PeriodTypeDto>>> Post([FromBody] PeriodTypeSaveDto periodTypeSaveDto)
         {
-            return await _periodTypeService.CreateAsync(periodTypeSaveDto);
+            var response = await _periodTypeService.CreateAsync(periodTypeSaveDto);
+            return TypedResults.CreatedAtRoute(response);
         }
 
         // PUT api/<PeriodTypeController>/5

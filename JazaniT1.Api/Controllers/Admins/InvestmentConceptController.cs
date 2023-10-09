@@ -28,18 +28,20 @@ namespace JazaniT1.Api.Controllers.Admins
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentConceptDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
-        public async Task<InvestmentConceptDto> Get(int id)
+        public async Task<Results<NotFound, Ok<InvestmentConceptDto>>> Get(int id)
         {
-            return await _investmentConceptService.FindByIdAsync(id);
+            var response = await _investmentConceptService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         // POST api/<InvestmentConcept>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InvestmentConceptDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
-        public async Task<InvestmentConceptDto> Post([FromBody] InvestmentConceptSaveDto investmentConceptSaveDto)
+        public async Task<Results<BadRequest, CreatedAtRoute<InvestmentConceptDto>>> Post([FromBody] InvestmentConceptSaveDto investmentConceptSaveDto)
         {
-            return await _investmentConceptService.CreateAsync(investmentConceptSaveDto);
+            var response= await _investmentConceptService.CreateAsync(investmentConceptSaveDto);
+            return  TypedResults.CreatedAtRoute(response);
         }
 
         // PUT api/<InvestmentConcept>/5
