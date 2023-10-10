@@ -1,12 +1,11 @@
-﻿namespace JazaniT1.Domain.Admins.Models
+﻿using JazaniT1.Domain.Cores.Models;
+
+namespace JazaniT1.Domain.Admins.Models
 {
-    public class InvestmentConcept
-    {
-        public int Id { get; set; }
+    public class InvestmentConcept: CoreModel<int> 
+    { 
         public string? Name { get; set; } = default;
         public string? Description { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public bool State { get; set; }
         public virtual ICollection<Investment> Investments { get; set; }
     }
 }

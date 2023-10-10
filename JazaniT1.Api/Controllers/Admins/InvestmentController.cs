@@ -1,4 +1,5 @@
-﻿using JazaniT1.Api.Exceptions;
+﻿using Jazani.Application.Mc.Dtos.Investments;
+using JazaniT1.Api.Exceptions;
 using JazaniT1.Application.Admins.Dtos.Investments;
 using JazaniT1.Application.Admins.Services;
 using JazaniT1.Core.Paginations;
@@ -61,8 +62,8 @@ namespace JazaniT1.Api.Controllers.Admins
         {
             return await _investmentService.DisabledAsync(id);
         }
-        [HttpHead("PaginatedSearch")]
-        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentDto> request)
+        [HttpGet("PaginatedSearch")]
+        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)
         {
             return await _investmentService.PaginatedSearch(request);
         }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using JazaniT1.Domain.Admins.Models;
+using Jazani.Application.Mc.Dtos.Investments;
 using JazaniT1.Core.Paginations;
+using JazaniT1.Domain.Admins.Models;
+
 namespace JazaniT1.Application.Admins.Dtos.Investments.Profiles
 {
     public class InvestmentProfile : Profile
@@ -11,8 +13,9 @@ namespace JazaniT1.Application.Admins.Dtos.Investments.Profiles
             CreateMap<InvestmentDto, InvestmentSaveDto>().ReverseMap();
             CreateMap<InvestmentSaveDto, Investment>();
 
+            CreateMap<Investment, InvestmentFilterDto>().ReverseMap();
             CreateMap<ResponsePagination<Investment>, ResponsePagination<InvestmentDto>>();
-            CreateMap<RequestPagination<Investment>,RequestPagination<InvestmentDto>>().ReverseMap();   
+            CreateMap<RequestPagination<Investment>, RequestPagination<InvestmentFilterDto>>().ReverseMap();
         }
     }
 }

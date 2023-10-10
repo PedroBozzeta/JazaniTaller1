@@ -1,18 +1,11 @@
 ﻿using Jazani.Application.Cores.Services;
+using Jazani.Application.Mc.Dtos.Investments;
 using JazaniT1.Application.Admins.Dtos.Investments;
+using JazaniT1.Application.Cores.Services;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    public interface IInvestmentService : ICrudService<InvestmentDto, InvestmentSaveDto, int>
+    public interface IInvestmentService :IPaginatedService<InvestmentFilterDto>, ICrudService<InvestmentDto, InvestmentSaveDto, int>
     {
-        Task<IReadOnlyList<InvestmentDto>> FindAllAsync();
-
-        Task<InvestmentDto> FindByIdAsync(int id);
-
-        Task<InvestmentDto> CreateAsync(InvestmentSaveDto investmentSave);
-
-        Task<InvestmentDto> EditAsync(int id, InvestmentSaveDto investmentSave);
-
-        Task<InvestmentDto> DisabledAsync(int id);
     }
 }

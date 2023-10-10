@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
 using JazaniT1.Application.Cores.Exceptions;
+using JazaniT1.Core.Paginations;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Microsoft.Extensions.Logging;
@@ -71,6 +72,15 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             }
             return _mapper.Map<InvestmentConceptDto>(investmentConcept);
         }
+
+        public async Task<ResponsePagination<InvestmentConceptDto>> PaginatedSearch(RequestPagination<InvestmentConceptDto> request)
+        {
+            var entity = _mapper.Map<RequestPagination<InvestmentConcept>>(request);
+            var response = await _investmentConceptRepository.PaginatedSearch(entity);
+
+            return _mapper.Map<ResponsePagination<InvestmentConceptDto>>(response);
+        }
+
         private NotFoundCoreException InvestmentConceptNotFound(int id)
         {
             return new NotFoundCoreException("InvestmentConcept no encontrado para el id " + id);

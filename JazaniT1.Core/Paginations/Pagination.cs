@@ -18,9 +18,10 @@
             int currentPage = page;
 
             if (page > lastPage) page = lastPage;
-            int to = (page * perPage);
 
+            int to = (page * perPage);
             if (to > total) to = total;
+
             int from = (page - 1) * (perPage + 1);
             if (total <= 0) from = 0;
 

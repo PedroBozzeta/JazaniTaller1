@@ -3,10 +3,8 @@ using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using JazaniT1.Domain.Cores.Paginations;
 using JazaniT1.Infrastructure.Cores.Contexts;
-using JazaniT1.Infrastructure.Cores.Paginations;
 using JazaniT1.Infrastructure.Cores.Persistences;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace JazaniT1.Infrastructure.Admins.Persistences
 {
@@ -56,14 +54,14 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
                 ((filter.State == null) || x.State == filter.State)
                 );
             }
+
             query = query.OrderByDescending(x => x.Id)
-                .Include(t => t.InvestmentConcept)
-                .Include(t => t.Holder)
-                .Include(t => t.InvestmentType)
-                .Include(t => t.MiningConcession)
-                .Include(t => t.MeasureUnit)
-                .Include(t => t.PeriodType)
-                ;
+                .Include(x => x.MiningConcession)
+                .Include(x => x.PeriodType)
+                .Include(x => x.MeasureUnit)
+                .Include(x => x.InvestmentType)
+                .Include(x => x.Holder)
+                .Include(x => x.InvestmentConcept);
 
             return await _paginator.Paginate(query, request);
         }

@@ -64,7 +64,7 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             return _mapper.Map<IReadOnlyList<InvestmentDto>>(investments);
         }
 
-        public async Task<InvestmentDto?> FindByIdAsync(int id)
+        public async Task<InvestmentDto> FindByIdAsync(int id)
         {
             Investment investment = await _investmentRepository.FindByIdAsync(id);
             if (investment == null) {
@@ -74,12 +74,12 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             return _mapper.Map<InvestmentDto>(investment);
         }
 
-        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
+        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
         {
-            RequestPagination<Investment> entity = _mapper.Map<RequestPagination<Investment>>(request);
-            ResponsePagination<Investment> response = await _investmentRepository.PaginatedSearch(entity);
+            var entity = _mapper.Map<RequestPagination<Investment>>(request);
+            var response = await _investmentRepository.PaginatedSearch(entity);
 
-            return _mapper.Map<ResponsePagination<InvestmentDto>>(response);
+            return _mapper.Map<ResponsePagination<InvestmentFilterDto>>(response);
         }
 
         private NotFoundCoreException InvestmentNotFound(int id)
