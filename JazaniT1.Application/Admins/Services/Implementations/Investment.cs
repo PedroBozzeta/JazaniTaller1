@@ -74,12 +74,12 @@ namespace JazaniT1.Application.Admins.Services.Implementations
             return _mapper.Map<InvestmentDto>(investment);
         }
 
-        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
         {
             var entity = _mapper.Map<RequestPagination<Investment>>(request);
             var response = await _investmentRepository.PaginatedSearch(entity);
 
-            return _mapper.Map<ResponsePagination<InvestmentFilterDto>>(response);
+            return _mapper.Map<ResponsePagination<InvestmentDto>>(response);
         }
 
         private NotFoundCoreException InvestmentNotFound(int id)

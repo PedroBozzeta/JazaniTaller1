@@ -49,7 +49,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
             if (filter is not null)
             {
                 query = query.Where(x =>
-                ((filter.Year == null || filter.Year == 0) || x.Year == filter.Year) &&
+                ((filter.Year == 0) || x.Year == filter.Year) &&
                 (string.IsNullOrWhiteSpace(filter.Description) || x.Description.ToUpper().Contains(filter.Description.ToUpper())) &&
                 ((filter.State == null) || x.State == filter.State)
                 );

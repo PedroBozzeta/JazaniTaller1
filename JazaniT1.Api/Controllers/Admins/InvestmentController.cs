@@ -63,7 +63,7 @@ namespace JazaniT1.Api.Controllers.Admins
             return await _investmentService.DisabledAsync(id);
         }
         [HttpGet("PaginatedSearch")]
-        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)
         {
             return await _investmentService.PaginatedSearch(request);
         }

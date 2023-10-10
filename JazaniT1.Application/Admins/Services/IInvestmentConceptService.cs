@@ -1,9 +1,10 @@
 ﻿using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
 using JazaniT1.Application.Cores.Services;
+using JazaniT1.Domain.Admins.Models;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    public interface IInvestmentConceptService :IPaginatedService<InvestmentConceptDto>
+    public interface IInvestmentConceptService :IPaginatedService<InvestmentConceptDto, InvestmentConceptDto>
     {
         Task<IReadOnlyList<InvestmentConceptDto>> FindAllAsync();
         Task<InvestmentConceptDto?> FindByIdAsync(int id);

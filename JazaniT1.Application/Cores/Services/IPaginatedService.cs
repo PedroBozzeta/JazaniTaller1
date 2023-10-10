@@ -2,8 +2,8 @@
 
 namespace JazaniT1.Application.Cores.Services
 {
-    public interface IPaginatedService<TDto>
+    public interface IPaginatedService<TDto, TDtoFilter>
     {
-        Task<ResponsePagination<TDto>> PaginatedSearch(RequestPagination<TDto> request);
+        Task<ResponsePagination<TDto>> PaginatedSearch(RequestPagination<TDtoFilter> request);
     }
 }

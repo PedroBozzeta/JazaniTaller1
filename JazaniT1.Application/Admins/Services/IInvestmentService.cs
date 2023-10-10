@@ -5,7 +5,7 @@ using JazaniT1.Application.Cores.Services;
 
 namespace JazaniT1.Application.Admins.Services
 {
-    public interface IInvestmentService :IPaginatedService<InvestmentFilterDto>, ICrudService<InvestmentDto, InvestmentSaveDto, int>
+    public interface IInvestmentService :IPaginatedService<InvestmentDto,InvestmentFilterDto>, ICrudService<InvestmentDto, InvestmentSaveDto, int>
     {
     }
 }
