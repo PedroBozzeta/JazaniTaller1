@@ -6,10 +6,10 @@ namespace JazaniT1.Application.Admins.Dtos.Investments.Validators
     {
         public InvestmentValidator()
         {
-            RuleFor(x => x.AmountInvestd).NotNull().NotEmpty();
-            RuleFor(x => x.MiningConcessionId).NotNull().NotEmpty();
-            RuleFor(x => x.InvestmentTypeId).NotNull().NotEmpty();
-            RuleFor(x => x.HolderId).NotNull().NotEmpty();
+            RuleFor(x => x.AmountInvestd).NotEmpty();
+            RuleFor(x => x.MiningConcessionId).NotEmpty();
+            RuleFor(x => x.InvestmentTypeId).NotEmpty();
+            RuleFor(x => x.HolderId).NotEmpty();
             }
     }
 }

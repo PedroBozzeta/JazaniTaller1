@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Generals\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\JazaniT1.Core\JazaniT1.Core.csproj" />
-  </ItemGroup>
-
 </Project>

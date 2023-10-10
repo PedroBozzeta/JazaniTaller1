@@ -1,6 +1,7 @@
 ﻿using JazaniT1.Api.Exceptions;
 using JazaniT1.Application.Admins.Dtos.Investments;
 using JazaniT1.Application.Admins.Services;
+using JazaniT1.Core.Paginations;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,6 +60,11 @@ namespace JazaniT1.Api.Controllers.Admins
         public async Task<InvestmentDto> Delete(int id)
         {
             return await _investmentService.DisabledAsync(id);
+        }
+        [HttpHead("PaginatedSearch")]
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentDto> request)
+        {
+            return await _investmentService.PaginatedSearch(request);
         }
     }
 }

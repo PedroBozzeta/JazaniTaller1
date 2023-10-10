@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Api", "JazaniT1.Api\JazaniT1.Api.csproj", "{11E4612B-F48A-4F08-97BA-F6FF3416A7EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Api", "JazaniT1.Api\JazaniT1.Api.csproj", "{11E4612B-F48A-4F08-97BA-F6FF3416A7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Application", "JazaniT1.Application\JazaniT1.Application.csproj", "{BF5EB767-5973-414F-9963-81944E36FFFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Application", "JazaniT1.Application\JazaniT1.Application.csproj", "{BF5EB767-5973-414F-9963-81944E36FFFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Infrastructure", "JazaniT1.Infrastructure\JazaniT1.Infrastructure.csproj", "{6F9D2369-C04C-4BCF-A460-7879D2237518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Infrastructure", "JazaniT1.Infrastructure\JazaniT1.Infrastructure.csproj", "{6F9D2369-C04C-4BCF-A460-7879D2237518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Domain", "JazaniT1.Domain\JazaniT1.Domain.csproj", "{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Domain", "JazaniT1.Domain\JazaniT1.Domain.csproj", "{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Core", "JazaniT1.Core\JazaniT1.Core.csproj", "{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
