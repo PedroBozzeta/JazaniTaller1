@@ -1,0 +1,109 @@
+[33mcommit ad24c5757223e67b7b81db8ecb042a8a2c8934f7[m
+Author: PedroBozzeta <108239149+PedroBozzeta@users.noreply.github.com>
+Date:   Tue Oct 10 12:38:06 2023 -0500
+
+    Adding especializated dto for filtering
+
+[1mdiff --git a/JazaniT1.Api/Controllers/Admins/InvestmentController.cs b/JazaniT1.Api/Controllers/Admins/InvestmentController.cs[m
+[1mindex 1cd6ed2..df2dc78 100644[m
+[1m--- a/JazaniT1.Api/Controllers/Admins/InvestmentController.cs[m
+[1m+++ b/JazaniT1.Api/Controllers/Admins/InvestmentController.cs[m
+[36m@@ -63,7 +63,7 @@[m [mnamespace JazaniT1.Api.Controllers.Admins[m
+             return await _investmentService.DisabledAsync(id);[m
+         }[m
+         [HttpGet("PaginatedSearch")][m
+[31m-        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)[m
+[32m+[m[32m        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)[m
+         {[m
+             return await _investmentService.PaginatedSearch(request);[m
+         }[m
+[1mdiff --git a/JazaniT1.Application/Admins/Dtos/Investments/InvestmentFilterDto.cs b/JazaniT1.Application/Admins/Dtos/Investments/InvestmentFilterDto.cs[m
+[1mindex c5d2131..fe01b87 100644[m
+[1m--- a/JazaniT1.Application/Admins/Dtos/Investments/InvestmentFilterDto.cs[m
+[1m+++ b/JazaniT1.Application/Admins/Dtos/Investments/InvestmentFilterDto.cs[m
+[36m@@ -1,6 +1,7 @@[m
+ ﻿namespace Jazani.Application.Mc.Dtos.Investments;[m
+ public class InvestmentFilterDto[m
+ {[m
+[31m-    public int? Year { get; set; }[m
+[32m+[m[32m    public int? Year { get; set; } = 0;[m
+     public string? Description { get; set; }[m
+[32m+[m[32m    public bool State { get; set; }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/JazaniT1.Application/Admins/Services/IInvestmentConceptService.cs b/JazaniT1.Application/Admins/Services/IInvestmentConceptService.cs[m
+[1mindex 0592997..9c52c94 100644[m
+[1m--- a/JazaniT1.Application/Admins/Services/IInvestmentConceptService.cs[m
+[1m+++ b/JazaniT1.Application/Admins/Services/IInvestmentConceptService.cs[m
+[36m@@ -1,9 +1,10 @@[m
+ ﻿using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;[m
+ using JazaniT1.Application.Cores.Services;[m
+[32m+[m[32musing JazaniT1.Domain.Admins.Models;[m
+ [m
+ namespace JazaniT1.Application.Admins.Services[m
+ {[m
+[31m-    public interface IInvestmentConceptService :IPaginatedService<InvestmentConceptDto>[m
+[32m+[m[32m    public interface IInvestmentConceptService :IPaginatedService<InvestmentConceptDto, InvestmentConceptDto>[m
+     {[m
+         Task<IReadOnlyList<InvestmentConceptDto>> FindAllAsync();[m
+         Task<InvestmentConceptDto?> FindByIdAsync(int id);[m
+[1mdiff --git a/JazaniT1.Application/Admins/Services/IInvestmentService.cs b/JazaniT1.Application/Admins/Services/IInvestmentService.cs[m
+[1mindex c9b329e..2fff7aa 100644[m
+[1m--- a/JazaniT1.Application/Admins/Services/IInvestmentService.cs[m
+[1m+++ b/JazaniT1.Application/Admins/Services/IInvestmentService.cs[m
+[36m@@ -5,7 +5,7 @@[m [musing JazaniT1.Application.Cores.Services;[m
+ [m
+ namespace JazaniT1.Application.Admins.Services[m
+ {[m
+[31m-    public interface IInvestmentService :IPaginatedService<InvestmentFilterDto>, ICrudService<InvestmentDto, InvestmentSaveDto, int>[m
+[32m+[m[32m    public interface IInvestmentService :IPaginatedService<InvestmentDto,InvestmentFilterDto>, ICrudService<InvestmentDto, InvestmentSaveDto, int>[m
+     {[m
+     }[m
+ }[m
+[1mdiff --git a/JazaniT1.Application/Admins/Services/Implementations/Investment.cs b/JazaniT1.Application/Admins/Services/Implementations/Investment.cs[m
+[1mindex 11be7a9..874a77a 100644[m
+[1m--- a/JazaniT1.Application/Admins/Services/Implementations/Investment.cs[m
+[1m+++ b/JazaniT1.Application/Admins/Services/Implementations/Investment.cs[m
+[36m@@ -74,12 +74,12 @@[m [mnamespace JazaniT1.Application.Admins.Services.Implementations[m
+             return _mapper.Map<InvestmentDto>(investment);[m
+         }[m
+ [m
+[31m-        public async Task<ResponsePagination<InvestmentFilterDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)[m
+[32m+[m[32m        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)[m
+         {[m
+             var entity = _mapper.Map<RequestPagination<Investment>>(request);[m
+             var response = await _investmentRepository.PaginatedSearch(entity);[m
+ [m
+[31m-            return _mapper.Map<ResponsePagination<InvestmentFilterDto>>(response);[m
+[32m+[m[32m            return _mapper.Map<ResponsePagination<InvestmentDto>>(response);[m
+         }[m
+ [m
+         private NotFoundCoreException InvestmentNotFound(int id)[m
+[1mdiff --git a/JazaniT1.Application/Cores/Services/IPaginatedService.cs b/JazaniT1.Application/Cores/Services/IPaginatedService.cs[m
+[1mindex 56b6e3c..21ad1a2 100644[m
+[1m--- a/JazaniT1.Application/Cores/Services/IPaginatedService.cs[m
+[1m+++ b/JazaniT1.Application/Cores/Services/IPaginatedService.cs[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ namespace JazaniT1.Application.Cores.Services[m
+ {[m
+[31m-    public interface IPaginatedService<TDto>[m
+[32m+[m[32m    public interface IPaginatedService<TDto, TDtoFilter>[m
+     {[m
+[31m-        Task<ResponsePagination<TDto>> PaginatedSearch(RequestPagination<TDto> request);[m
+[32m+[m[32m        Task<ResponsePagination<TDto>> PaginatedSearch(RequestPagination<TDtoFilter> request);[m
+     }[m
+ }[m
+[1mdiff --git a/JazaniT1.Infrastructure/Admins/Persistences/InvestmentRepository.cs b/JazaniT1.Infrastructure/Admins/Persistences/InvestmentRepository.cs[m
+[1mindex 4009314..d2ac9c3 100644[m
+[1m--- a/JazaniT1.Infrastructure/Admins/Persistences/InvestmentRepository.cs[m
+[1m+++ b/JazaniT1.Infrastructure/Admins/Persistences/InvestmentRepository.cs[m
+[36m@@ -49,7 +49,7 @@[m [mnamespace JazaniT1.Infrastructure.Admins.Persistences[m
+             if (filter is not null)[m
+             {[m
+                 query = query.Where(x =>[m
+[31m-                ((filter.Year == null || filter.Year == 0) || x.Year == filter.Year) &&[m
+[32m+[m[32m                ((filter.Year == 0) || x.Year == filter.Year) &&[m
+                 (string.IsNullOrWhiteSpace(filter.Description) || x.Description.ToUpper().Contains(filter.Description.ToUpper())) &&[m
+                 ((filter.State == null) || x.State == filter.State)[m
+                 );[m

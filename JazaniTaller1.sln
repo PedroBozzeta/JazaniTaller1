@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Domain", "JazaniT1.Domain\JazaniT1.Domain.csproj", "{E98C3DEA-C7A2-4EEA-A2F8-8725AC6B1CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.Core", "JazaniT1.Core\JazaniT1.Core.csproj", "{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JazaniT1.Core", "JazaniT1.Core\JazaniT1.Core.csproj", "{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazaniT1.UnitTest", "JazaniT1.UnitTest\JazaniT1.UnitTest.csproj", "{512C4660-3382-4376-AA90-05EE346A0FF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{380AB7D4-4E1D-4774-B4B5-2225AFAAB62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512C4660-3382-4376-AA90-05EE346A0FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512C4660-3382-4376-AA90-05EE346A0FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512C4660-3382-4376-AA90-05EE346A0FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512C4660-3382-4376-AA90-05EE346A0FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

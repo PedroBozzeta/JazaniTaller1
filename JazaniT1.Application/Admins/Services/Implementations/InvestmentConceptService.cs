@@ -12,9 +12,9 @@ namespace JazaniT1.Application.Admins.Services.Implementations
     {
         private readonly IInvestmentConceptRepository _investmentConceptRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<InvestmentConcept> _logger;
+        private readonly ILogger<InvestmentConceptService> _logger;
 
-        public InvestmentConceptService(IInvestmentConceptRepository investmentConceptRepository, IMapper mapper, ILogger<InvestmentConcept> logger)
+        public InvestmentConceptService(IInvestmentConceptRepository investmentConceptRepository, IMapper mapper, ILogger<InvestmentConceptService> logger)
         {
             _investmentConceptRepository = investmentConceptRepository;
             _mapper = mapper;
