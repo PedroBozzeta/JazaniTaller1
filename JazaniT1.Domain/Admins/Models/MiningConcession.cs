@@ -8,7 +8,7 @@ namespace JazaniT1.Domain.Admins.Models
 
         [MaxLength(11)]
         public string Code { get; set; } = default;
-        public string Name { get; set; } = default;
+        public string? Name { get; set; } = default;
         public string? Description { get; set; }
         public DateTime RegistrationDate { get; set; }
         public int MineralTypeId { get; set; } = 1;
@@ -19,7 +19,7 @@ namespace JazaniT1.Domain.Admins.Models
         public int ConditionId { get; set; } = 1;
         public int StateManagementId { get; set; } = 1;
         public bool State { get; set; }
-        public bool IsSincronized { get; set; } 
+        public bool? IsSincronized { get; set; } = false;
         public virtual ICollection<Investment> Investments { get; set; }
     }
 }
