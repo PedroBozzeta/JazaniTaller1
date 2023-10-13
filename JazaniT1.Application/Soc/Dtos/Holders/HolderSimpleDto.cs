@@ -1,4 +1,4 @@
-﻿namespace JazaniT1.Application.Admins.Dtos.Holders
+﻿namespace JazaniT1.Application.Soc.Dtos.Holders
 {
     public class HolderSimpleDto
     {

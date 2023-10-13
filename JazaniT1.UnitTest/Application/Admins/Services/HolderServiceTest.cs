@@ -1,19 +1,14 @@
 ﻿using AutoFixture;
 using AutoMapper;
-using JazaniT1.Application.Admins.Dtos.Holders;
-using JazaniT1.Application.Admins.Services.Implementations;
-using JazaniT1.Application.Admins.Services;
+using JazaniT1.Application.Soc.Dtos.Holders;
+using JazaniT1.Application.Soc.Dtos.Holders.Profiles;
+using JazaniT1.Application.Soc.Services;
+using JazaniT1.Application.Soc.Services.Implementations;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JazaniT1.Application.Admins.Dtos.Holders.Profiles;
 
-namespace JazaniT1.UnitTest.Application.Admins.Services
+namespace JazaniT1.UnitTest.Application.Soc.Services
 {
     public class HolderServiceTest
     {

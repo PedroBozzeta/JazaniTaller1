@@ -1,6 +1,6 @@
-﻿namespace JazaniT1.Application.Admins.Dtos.Holders
+﻿namespace JazaniT1.Application.Soc.Dtos.Holders
 {
-    public class HolderDto
+    public class HolderSaveDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = default;

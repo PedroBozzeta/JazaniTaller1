@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using JazaniT1.Application.Admins.Dtos.Holders;
 using JazaniT1.Application.Cores.Exceptions;
+using JazaniT1.Application.Soc.Dtos.Holders;
+using JazaniT1.Application.Soc.Services;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Microsoft.Extensions.Logging;
 
-namespace JazaniT1.Application.Admins.Services.Implementations
+namespace JazaniT1.Application.Soc.Services.Implementations
 {
     public class HolderService : IHolderService
     {

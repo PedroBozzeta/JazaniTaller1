@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
 using AutoMapper;
-using JazaniT1.Application.Admins.Dtos.Holders.Profiles;
 using JazaniT1.Application.Generals.Dtos.MeasureUnits.Mappers;
 using JazaniT1.Application.Generals.Dtos.PeriodTypes.Profiles;
 using JazaniT1.Application.Mc.Dtos.InvestmentConcepts.Profiles;
@@ -10,11 +9,12 @@ using JazaniT1.Application.Mc.Dtos.InvestmentTypes.Profiles;
 using JazaniT1.Application.Mc.Dtos.MiningConcessions.Profiles;
 using JazaniT1.Application.Mc.Services;
 using JazaniT1.Application.Mc.Services.Implementations;
+using JazaniT1.Application.Soc.Dtos.Holders.Profiles;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Moq;
 
-namespace JazaniT1.UnitTest.Application.Admins.Services
+namespace JazaniT1.UnitTest.Application.Soc.Services
 {
     public class InvestmentServiceTest
     {

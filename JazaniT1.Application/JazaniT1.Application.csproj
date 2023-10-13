@@ -18,8 +18,4 @@
     <ProjectReference Include="..\JazaniT1.Domain\JazaniT1.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Soc\" />
-  </ItemGroup>
-
 </Project>

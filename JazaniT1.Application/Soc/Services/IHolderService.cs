@@ -1,6 +1,6 @@
-﻿using JazaniT1.Application.Admins.Dtos.Holders;
+﻿using JazaniT1.Application.Soc.Dtos.Holders;
 
-namespace JazaniT1.Application.Admins.Services
+namespace JazaniT1.Application.Soc.Services
 {
     public interface IHolderService
     {

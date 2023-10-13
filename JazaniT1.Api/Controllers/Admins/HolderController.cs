@@ -1,12 +1,12 @@
 ﻿using JazaniT1.Api.Exceptions;
-using JazaniT1.Application.Admins.Dtos.Holders;
-using JazaniT1.Application.Admins.Services;
+using JazaniT1.Application.Soc.Dtos.Holders;
+using JazaniT1.Application.Soc.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace JazaniT1.Api.Controllers.Admins
+namespace JazaniT1.Api.Controllers.Soc
 {
     [Route("api/[controller]")]
     [ApiController]

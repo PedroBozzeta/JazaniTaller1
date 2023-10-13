@@ -1,9 +1,9 @@
-﻿using JazaniT1.Application.Admins.Dtos.Holders;
-using JazaniT1.Application.Generals.Dtos.MeasureUnits;
+﻿using JazaniT1.Application.Generals.Dtos.MeasureUnits;
 using JazaniT1.Application.Generals.Dtos.PeriodTypes;
 using JazaniT1.Application.Mc.Dtos.InvestmentConcepts;
 using JazaniT1.Application.Mc.Dtos.InvestmentTypes;
 using JazaniT1.Application.Mc.Dtos.MiningConcessions;
+using JazaniT1.Application.Soc.Dtos.Holders;
 
 namespace JazaniT1.Application.Mc.Dtos.Investments
 {

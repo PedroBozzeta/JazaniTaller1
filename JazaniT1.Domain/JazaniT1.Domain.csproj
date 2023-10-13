@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Generals\" />
+    <Folder Include="NewFolder\" />
+    <Folder Include="Soc\" />
   </ItemGroup>
 
   <ItemGroup>
