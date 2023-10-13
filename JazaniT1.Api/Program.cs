@@ -7,10 +7,13 @@ using JazaniT1.Core.Securities.Services;
 using JazaniT1.Core.Securities.Services.Implementations;
 using JazaniT1.Infrastructure.Cores.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
 using System.Text;
@@ -33,6 +36,13 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidationFilter());
+    AuthorizationPolicy authorizationPolicyBuilder = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+
+    options.Filters.Add(new AuthorizeFilter());
+         
+
 });
 //Route options
 builder.Services.Configure<RouteOptions>(options =>
@@ -69,6 +79,21 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience=false,
         ValidateIssuerSigningKey=true
     };
+});
+//AuthorizeOperationFilter
+builder.Services.AddSwaggerGen(options =>
+{
+    options.OperationFilter<AuthorizeOperationFilter>();
+    string schemeName = "Bearer";
+    options.AddSecurityDefinition(schemeName, new OpenApiSecurityScheme()
+    {
+        Name = schemeName,
+        BearerFormat = "JWT",
+        Scheme = schemeName,
+        Description = "Add token.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+    });
 });
 //Infrastructure
 builder.Services.addInfrastructureServices(builder.Configuration);

@@ -1,6 +1,7 @@
 ﻿using JazaniT1.Api.Exceptions;
 using JazaniT1.Application.Admins.Dtos.Users;
 using JazaniT1.Application.Admins.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace JazaniT1.Api.Controllers.Admins
 
         // POST api/<AuthController>
         [HttpPost("Login")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK,Type=typeof(UserSecurityDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorValidationModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
