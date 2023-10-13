@@ -1,6 +1,6 @@
 ﻿using JazaniT1.Api.Exceptions;
-using JazaniT1.Application.Admins.Dtos.MiningConcessions;
-using JazaniT1.Application.Admins.Services;
+using JazaniT1.Application.Mc.Dtos.MiningConcessions;
+using JazaniT1.Application.Mc.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 

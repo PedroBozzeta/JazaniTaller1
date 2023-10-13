@@ -1,7 +1,6 @@
-﻿using Jazani.Application.Mc.Dtos.Investments;
-using JazaniT1.Api.Exceptions;
-using JazaniT1.Application.Admins.Dtos.Investments;
-using JazaniT1.Application.Admins.Services;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Mc.Dtos.Investments;
+using JazaniT1.Application.Mc.Services;
 using JazaniT1.Core.Paginations;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,6 @@
 ﻿using JazaniT1.Api.Exceptions;
-using JazaniT1.Application.Admins.Dtos.PeriodTypes;
-using JazaniT1.Application.Admins.Services;
+using JazaniT1.Application.Generals.Dtos.PeriodTypes;
+using JazaniT1.Application.Generals.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 

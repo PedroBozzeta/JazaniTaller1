@@ -1,9 +1,9 @@
 ﻿using AutoFixture;
 using AutoMapper;
-using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
-using JazaniT1.Application.Admins.Dtos.InvestmentConcepts.Profiles;
-using JazaniT1.Application.Admins.Services;
-using JazaniT1.Application.Admins.Services.Implementations;
+using JazaniT1.Application.Mc.Dtos.InvestmentConcepts;
+using JazaniT1.Application.Mc.Dtos.InvestmentConcepts.Profiles;
+using JazaniT1.Application.Mc.Services;
+using JazaniT1.Application.Mc.Services.Implementations;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Moq;

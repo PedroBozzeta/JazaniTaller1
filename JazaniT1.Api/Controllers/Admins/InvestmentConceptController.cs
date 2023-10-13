@@ -1,11 +1,9 @@
-﻿using JazaniT1.Application.Admins.Dtos.InvestmentConcepts;
-using JazaniT1.Application.Admins.Services;
+﻿using JazaniT1.Api.Exceptions;
+using JazaniT1.Application.Mc.Dtos.InvestmentConcepts;
+using JazaniT1.Application.Mc.Services;
+using JazaniT1.Core.Paginations;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using JazaniT1.Api.Exceptions;
-using JazaniT1.Application.Admins.Dtos.Investments;
-using JazaniT1.Application.Admins.Services.Implementations;
-using JazaniT1.Core.Paginations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
