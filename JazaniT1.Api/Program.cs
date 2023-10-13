@@ -3,9 +3,17 @@ using Autofac.Extensions.DependencyInjection;
 using JazaniT1.Api.Filters;
 using JazaniT1.Api.Middlewares;
 using JazaniT1.Application.Cores.Contexts;
+using JazaniT1.Core.Securities.Services;
+using JazaniT1.Core.Securities.Services.Implementations;
 using JazaniT1.Infrastructure.Cores.Contexts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Events;
+using System.Text;
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +42,34 @@ builder.Services.Configure<RouteOptions>(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//Hasher
+builder.Services.Configure<PasswordHasherOptions>(options =>
+{
+    options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
+});
+//ISecurityService
+builder.Services.AddTransient<ISecurityService, SecurityService>();
+//JWT
+string jwtSecretKey = builder.Configuration.GetSection("Security:JwtSecretKey").Get<string>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
+}).AddJwtBearer(options =>
+{
+    byte[] key=Encoding.ASCII.GetBytes(jwtSecretKey);
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        IssuerSigningKey=new SymmetricSecurityKey(key),
+        ValidateLifetime=true,
+        ValidIssuer= "",
+        ValidAudience= "",
+        ValidateIssuer=false,
+        ValidateAudience=false,
+        ValidateIssuerSigningKey=true
+    };
+});
 //Infrastructure
 builder.Services.addInfrastructureServices(builder.Configuration);
 
