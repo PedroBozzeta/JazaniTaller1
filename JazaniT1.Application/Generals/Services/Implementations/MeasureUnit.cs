@@ -2,6 +2,8 @@
 using JazaniT1.Application.Cores.Exceptions;
 using JazaniT1.Application.Generals.Dtos.MeasureUnits;
 using JazaniT1.Application.Generals.Services;
+using JazaniT1.Application.Mc.Dtos.InvestmentConcepts;
+using JazaniT1.Core.Paginations;
 using JazaniT1.Domain.Admins.Models;
 using JazaniT1.Domain.Admins.Repositories;
 using Microsoft.Extensions.Logging;
@@ -84,6 +86,15 @@ namespace JazaniT1.Application.Generals.Services.Implementations
 
             return _mapper.Map<MeasureUnitDto>(measureUnit);
         }
+
+        public async Task<ResponsePagination<MeasureUnitDto>> PaginatedSearch(RequestPagination<MeasureUnitDto> request)
+        {
+            var entity = _mapper.Map<RequestPagination<MeasureUnit>>(request);
+            var response = await _measureUnitRepository.PaginatedSearch(entity);
+
+            return _mapper.Map<ResponsePagination<MeasureUnitDto>>(response);
+        }
+
         private NotFoundCoreException MeasureUnitNotFound(int id)
         {
             return new NotFoundCoreException("Unidad de medida no encontrado para el id " + id);

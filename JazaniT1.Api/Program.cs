@@ -41,7 +41,7 @@ builder.Services.AddControllers(options =>
     .Build();
 
     options.Filters.Add(new AuthorizeFilter());
-         
+
 
 });
 //Route options
@@ -122,6 +122,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseCors(options =>
+{
+    options.AllowAnyHeader()
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .Build();
+});
 
 app.UseHttpsRedirection();
 

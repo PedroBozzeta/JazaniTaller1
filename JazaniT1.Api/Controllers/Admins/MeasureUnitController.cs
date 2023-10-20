@@ -1,6 +1,7 @@
 ﻿using JazaniT1.Api.Exceptions;
 using JazaniT1.Application.Generals.Dtos.MeasureUnits;
 using JazaniT1.Application.Generals.Services;
+using JazaniT1.Core.Paginations;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +56,11 @@ namespace JazaniT1.Api.Controllers.Admins
         public async Task<MeasureUnitDto> Delete(int id)
         {
             return await _measureUnitService.DisabledAsync(id);
+        }
+        [HttpGet("PaginatedSearch")]
+        public async Task<ResponsePagination<MeasureUnitDto>> PaginatedSearch([FromQuery] RequestPagination<MeasureUnitDto> request)
+        {
+            return await _measureUnitService.PaginatedSearch(request);
         }
     }
 }

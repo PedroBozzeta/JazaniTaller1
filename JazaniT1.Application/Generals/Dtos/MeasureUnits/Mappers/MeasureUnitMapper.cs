@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using JazaniT1.Application.Generals.Dtos.MeasureUnits;
+using JazaniT1.Core.Paginations;
 using JazaniT1.Domain.Admins.Models;
 namespace JazaniT1.Application.Generals.Dtos.MeasureUnits.Mappers
 {
@@ -9,6 +9,8 @@ namespace JazaniT1.Application.Generals.Dtos.MeasureUnits.Mappers
         {
             CreateMap<MeasureUnit, MeasureUnitDto>();
             CreateMap<MeasureUnit, MeasureUnitSimpleDto>();
+            CreateMap<ResponsePagination<MeasureUnit>, ResponsePagination<MeasureUnitDto>>();
+            CreateMap<RequestPagination<MeasureUnit>, RequestPagination<MeasureUnitDto>>().ReverseMap(); ;
         }
     }
 }

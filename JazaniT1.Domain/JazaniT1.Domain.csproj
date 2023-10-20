@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Generals\" />
+    <Folder Include="Generals\Models\" />
+    <Folder Include="Generals\Repositories\" />
     <Folder Include="NewFolder\" />
     <Folder Include="Soc\" />
   </ItemGroup>

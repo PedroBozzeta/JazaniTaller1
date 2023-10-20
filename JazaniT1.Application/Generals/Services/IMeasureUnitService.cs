@@ -1,8 +1,10 @@
-﻿using JazaniT1.Application.Generals.Dtos.MeasureUnits;
+﻿using JazaniT1.Application.Cores.Services;
+using JazaniT1.Application.Generals.Dtos.MeasureUnits;
+using JazaniT1.Application.Mc.Dtos.InvestmentConcepts;
 
 namespace JazaniT1.Application.Generals.Services
 {
-    public interface IMeasureUnitService
+    public interface IMeasureUnitService : IPaginatedService<MeasureUnitDto, MeasureUnitDto>
     {
         Task<IReadOnlyList<MeasureUnitDto>> FindAllAsync();
         Task<MeasureUnitDto?> FindByIdAsync(int id);
