@@ -13,14 +13,16 @@ namespace JazaniT1.Infrastructure.Cores.Paginations
 
 
             var sizePerPage = pagination.PerPage;
+
             var diference = (pagination.To - pagination.From) + 1;
 
             if (diference < pagination.PerPage) sizePerPage = diference;
-
+            Console.WriteLine("la diferencia es de "+diference);
             var currentPage=pagination.CurrentPage;
-            if(currentPage>0) currentPage = pagination.CurrentPage- 1;
 
-            var queryPagination = query.Skip(currentPage + sizePerPage).Take(sizePerPage);
+            if(currentPage>0 ) currentPage = pagination.CurrentPage-1;
+
+            var queryPagination = query.Skip(currentPage * pagination.PerPage).Take(sizePerPage);
             var data =await queryPagination.ToListAsync();
 
             return new ResponsePagination<T>(pagination)

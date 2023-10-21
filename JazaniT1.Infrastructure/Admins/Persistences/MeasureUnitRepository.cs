@@ -29,7 +29,7 @@ namespace JazaniT1.Infrastructure.Admins.Persistences
                 );
             }
 
-            query = query.OrderByDescending(x => x.Id);
+            query = query.OrderBy(x => x.Id);
 
             return await _paginator.Paginate(query, request);
         }
